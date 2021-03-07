@@ -10,8 +10,4 @@ int main(){
             break;
         }
     }
-    // int x,k;
-    // cin >> x >> k;
-    // int money = 52*7*x+21*52*k;
-    // cout << money;
 }
