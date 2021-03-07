@@ -1,4 +1,5 @@
 #include <iostream>
+#include<cstring>
 using namespace std;
 bool isprime(int n){
     if(n < 2) return 0;
@@ -8,6 +9,7 @@ bool isprime(int n){
     return 1;
 }
 int a[10] = {0};
+int l,r;
 void go(int x,int k){ // x是当前进行到的位数，k是总位数 a[0]是个位，倒序！
     if(x==(k+1)/2){ 
         for(int i = k-1 ; i >= x ; i--){
@@ -17,7 +19,8 @@ void go(int x,int k){ // x是当前进行到的位数，k是总位数 a[0]是个位，倒序！
         for(int i = 0 ; i < k ; i++){
             shu = shu* 10 + a[i];
         }
-        cout << shu << endl;
+        if(shu >= l && shu <= r && isprime(shu))
+            cout << shu << endl;
         return;
     }
     int i;
@@ -28,6 +31,22 @@ void go(int x,int k){ // x是当前进行到的位数，k是总位数 a[0]是个位，倒序！
         go(x+1,k);
     }
 }
+int tonum(string str){
+    int l = str.length();
+    int num = 0;
+    for(int i = 0 ; i < l ; i++){
+        num = num * 10 + str[i]-'0';
+    }
+    return num;
+}
 int main(){
-    go(0,3);
+    string sl,sr;
+    cin >> sl >> sr;
+    int x = sl.length();
+    int y = sr.length();
+    l = tonum(sl);
+    r = tonum(sr);
+    for(int i = x ; i <= y ; i++){
+        go(0,i);
+    }    
 }
